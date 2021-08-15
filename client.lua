@@ -13,8 +13,8 @@
 IsDown = false
 IsDead = false
 secondsRemaining = Config.BleedoutTimer
-local ReviveTimer = 3
-local RespawnTimer = 3
+local ReviveTimer = Config.ReviveTime
+local RespawnTimer = Config.RespawnTime
 local ReviveTimerShow = false
 local RespawnTimerShow = false
 
@@ -119,7 +119,7 @@ Citizen.CreateThread(function()
 				text("~w~You will be revived in ~r~" .. ReviveTimer .. " ~w~seconds")
 			elseif IsControlReleased(0, 51) then
 				ReviveTimerShow = false
-				ReviveTimer = 3
+				ReviveTimer = Config.ReviveTime
 			end
 		end
 	end
@@ -136,7 +136,7 @@ Citizen.CreateThread(function()
 				text("~w~You will respawn in ~r~" .. RespawnTimer .. " ~w~seconds")
 			elseif IsControlReleased(0, 45) then
 				RespawnTimerShow = false
-				RespawnTimer = 3
+				RespawnTimer = Config.RespawnTime
 			end
 		end
 	end
@@ -151,7 +151,7 @@ Citizen.CreateThread(function()
 			if ReviveTimer > 0 then
 				ReviveTimer = ReviveTimer -1
 			elseif ReviveTimer == 0 then
-				ReviveTimer = 3
+				ReviveTimer = Config.ReviveTime
 				RevivePlayer()
 				ReviveTimerShow = false
 			end
@@ -159,7 +159,7 @@ Citizen.CreateThread(function()
 			if RespawnTimer > 0 then
 				RespawnTimer = RespawnTimer -1
 			elseif RespawnTimer == 0 then
-				RespawnTimer = 3
+				RespawnTimer = Config.RespawnTime
 				RespawnPlayer()
 				RespawnTimerShow = false
 			end
