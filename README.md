@@ -11,6 +11,7 @@ This script will play animations when your character dies.
 * Keybinds
 * Synced
 * Down & Dead
+* Integrated with Pulse System - Made by Jordan2139
 
 # Video preview:
 https://youtu.be/AvmP3j1WuIA
