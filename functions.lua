@@ -84,3 +84,15 @@ function RespawnPlayer()
     ResetPedVisibleDamage(GetPlayerPed(-1))
     secondsRemaining = Config.BleedoutTimer
 end
+
+-- Check who the nearest person is
+function GetClosestPlayer() local Ped = PlayerPedId() for _, Player in ipairs(GetActivePlayers()) do if GetPlayerPed(Player) ~= GetPlayerPed(-1) then local Ped2 = GetPlayerPed(Player) local x, y, z = table.unpack(GetEntityCoords(Ped)) if (GetDistanceBetweenCoords(GetEntityCoords(Ped2), x, y, z) <  2) then return GetPlayerServerId(Player) end end end return false end
+
+-- Notify above map (disable in config.lua)
+function notify(Text) SetNotificationTextEntry('STRING') AddTextComponentString(Text) DrawNotification(true, true) end
+
+-- Keyboard Input Function For pulseset --
+function OnScreenKeyBoard(TextEntry) AddTextEntry('FMMC_KEY_TIP1', TextEntry) DisplayOnscreenKeyboard(1, 'FMMC_KEY_TIP1', '', '', '', '', '', 5) BlockInput = true while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do Citizen.Wait(0) end if UpdateOnscreenKeyboard() ~= 2 then local Result = GetOnscreenKeyboardResult() Citizen.Wait(500) BlockInput = false return Result else Citizen.Wait(500) BlockInput = false return nil end end
+
+-- Draw 3D Text | Credit: https://github.com/Cheleber/tag_admin
+function DrawText3D(coords, text) local camCoords = GetGameplayCamCoord() local dist = #(coords - camCoords) local scale = 200 / (GetGameplayCamFov() * dist) SetTextScale(0.2, config.TextSize * scale) SetTextFont(4) SetTextColour(255, 255, 255, 255) SetTextDropshadow(0, 0, 0, 0, 255) SetTextEdge(2, 0, 0, 0, 150) SetTextOutline() SetTextCentre(1) SetTextProportional(1) SetTextDropShadow() SetTextCentre(true) BeginTextCommandDisplayText("STRING") AddTextComponentSubstringPlayerName(text) SetDrawOrigin(coords, 0) EndTextCommandDisplayText(0.0, 0.0) ClearDrawOrigin() end

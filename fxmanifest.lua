@@ -13,7 +13,7 @@ games {"gta5"}
 
 title "Death System"
 description "Dojrp based death system"
-author "Andyyy#7666"
+author "Andyyy#7666, Edited by Kayne#8814 to integrate Pulse"
 version "v1.0"
 
 client_script {
@@ -21,3 +21,5 @@ client_script {
 	"client.lua",
 	"functions.lua",
 }
+
+server_script 'server.lua'
